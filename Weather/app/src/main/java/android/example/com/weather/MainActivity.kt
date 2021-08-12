@@ -1,5 +1,6 @@
 package android.example.com.weather
 
+import android.example.com.weather.cities.CitiesFragment
 import android.example.com.weather.data.ForecastDay
 import android.example.com.weather.data.ForecastWeek
 import android.example.com.weather.databinding.ActivityMainBinding
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemSelectedListener { item->
             when(item.itemId){
                 R.id.bottom_menu_search -> SearchFragment()
+                R.id.bottom_menu_cities -> CitiesFragment()
                 else -> null
             }?.also { supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container,it)

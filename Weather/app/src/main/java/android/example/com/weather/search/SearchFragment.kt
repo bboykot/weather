@@ -1,18 +1,24 @@
 package android.example.com.weather.search
 
 import android.example.com.weather.databinding.FragmentSearchBinding
+import android.example.com.weather.db.CitiesDao
+import android.example.com.weather.db.CitiesDataBase
+import android.example.com.weather.db.CitiesEntity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: SearchViewModel
+    private lateinit var dataSource: CitiesDao
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,6 +28,7 @@ class SearchFragment : Fragment() {
         setBinding(inflater)
         setViewModel()
         setSearchClickListener()
+        setSaveClickListener()
         //observeDataFromInternet()
 
         return binding.root
@@ -33,6 +40,7 @@ class SearchFragment : Fragment() {
     }
     fun setViewModel(){
         val application= requireNotNull(this.activity).application
+        dataSource = CitiesDataBase.getInstance(application).citiesDao
         val viewModelFactory = SearchViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(SearchViewModel::class.java)
         binding.viewModel = viewModel
@@ -42,6 +50,18 @@ class SearchFragment : Fragment() {
         binding.btnSearch.setOnClickListener {
             val city = binding.etSearch.text.toString()
             viewModel.loadForecastDay(city)
+        }
+    }
+    fun setSaveClickListener(){
+        binding.brnSaveCity.setOnClickListener {
+            GlobalScope.launch {
+                dataSource.insertCity(
+                    CitiesEntity(
+                        id = viewModel.forecastCurrent.value?.id,
+                        name = viewModel.forecastCurrent.value?.name
+                    )
+                )
+            }
         }
     }
 //    fun observeDataFromInternet(){
