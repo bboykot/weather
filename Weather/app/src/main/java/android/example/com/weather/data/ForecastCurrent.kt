@@ -1,6 +1,7 @@
 package android.example.com.weather.data
 
 data class ForecastCurrent(
+    val id: Long,
     val name: String,
     val weather: List<Weather>,
     val main: Main,
