@@ -12,4 +12,10 @@ interface CitiesDao {
 
     @Query("select * from cities")
     suspend fun selectCities(): List<CitiesEntity>
+
+    @Query("select * from cities where defaultCity = :defaultCity")
+    suspend fun selectDefaultCity(defaultCity : Boolean): CitiesEntity
+
+    @Query("update cities set defaultCity= :defaultCity where id = :id")
+    suspend fun removeDefaultFlag(defaultCity: Boolean, id: Long?)
 }

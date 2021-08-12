@@ -3,15 +3,12 @@ package android.example.com.weather.search
 import android.example.com.weather.databinding.FragmentSearchBinding
 import android.example.com.weather.db.CitiesDao
 import android.example.com.weather.db.CitiesDataBase
-import android.example.com.weather.db.CitiesEntity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class SearchFragment : Fragment() {
@@ -29,6 +26,7 @@ class SearchFragment : Fragment() {
         setViewModel()
         setSearchClickListener()
         setSaveClickListener()
+        setSaveCityAsDefaultClickListener()
         //observeDataFromInternet()
 
         return binding.root
@@ -41,7 +39,7 @@ class SearchFragment : Fragment() {
     fun setViewModel(){
         val application= requireNotNull(this.activity).application
         dataSource = CitiesDataBase.getInstance(application).citiesDao
-        val viewModelFactory = SearchViewModelFactory(application)
+        val viewModelFactory = SearchViewModelFactory(application,dataSource)
         viewModel = ViewModelProvider(this,viewModelFactory).get(SearchViewModel::class.java)
         binding.viewModel = viewModel
     }
@@ -54,14 +52,20 @@ class SearchFragment : Fragment() {
     }
     fun setSaveClickListener(){
         binding.brnSaveCity.setOnClickListener {
-            GlobalScope.launch {
-                dataSource.insertCity(
-                    CitiesEntity(
-                        id = viewModel.forecastCurrent.value?.id,
-                        name = viewModel.forecastCurrent.value?.name
-                    )
-                )
-            }
+            viewModel.saveCity()
+//            GlobalScope.launch {
+//                dataSource.insertCity(
+//                    CitiesEntity(
+//                        id = viewModel.forecastCurrent.value?.id,
+//                        name = viewModel.forecastCurrent.value?.name
+//                    )
+//                )
+//            }
+        }
+    }
+    fun setSaveCityAsDefaultClickListener(){
+        binding.btnSaveSetDefault.setOnClickListener {
+            viewModel.saveCityAsDefault()
         }
     }
 //    fun observeDataFromInternet(){

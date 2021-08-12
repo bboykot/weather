@@ -13,9 +13,11 @@ class CitiesViewModel(application: Application,val datasource: CitiesDao) : Andr
 
     val applicationn = application
     val cities = MutableLiveData<List<CitiesEntity>>()
+    val defaultCity = MutableLiveData<CitiesEntity>()
 
     init {
         selectData()
+        selectDefaultCity()
     }
 
     fun selectData(){
@@ -24,6 +26,12 @@ class CitiesViewModel(application: Application,val datasource: CitiesDao) : Andr
             cities.value = datasource.selectCities()
             }
             catch (e: Exception){Toast.makeText(applicationn.baseContext,"No data",Toast.LENGTH_LONG).show()}
+        }
+    }
+    //временная функция для теста, она будет использоваться потом во фрагменте домашнем
+    fun selectDefaultCity(){
+        viewModelScope.launch {
+            defaultCity.value = datasource.selectDefaultCity(true)
         }
     }
 }
