@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="android.example.com.weather.search.SearchViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".search.SearchFragment">
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="100dp"/>
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/et_search"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Поиск"/>
+
+    <Button
+        android:id="@+id/brn_save_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_search"
+        android:text="Сохранить"/>
+
+    <Button
+        android:id="@+id/btn_save_set_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сохранить и сделать городом по умолчанию"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/brn_save_city"
+        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+
+
+    <TextView
+        android:id="@+id/tv_search_city_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.forecastCurrent.name}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_save_set_default" />
+
+    <TextView
+        android:id="@+id/tv_search_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_search_city_name"
+        android:text="@{viewModel.forecastCurrent.Main.temperature}"/>
+
+    <TextView
+        android:id="@+id/tv_search_wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_search_temp"
+        android:text="@{viewModel.forecastCurrent.Wind.wind}"/>
+
+    <TextView
+        android:id="@+id/tv_search_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_search_wind"
+        android:text="@{viewModel.forecastCurrent.Weather[0].description}"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

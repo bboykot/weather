@@ -1,5 +1,6 @@
 package android.example.com.weather.network
 
+import android.example.com.weather.data.ForecastCurrent
 import android.example.com.weather.data.ForecastDay
 import android.example.com.weather.data.ForecastWeek
 import retrofit2.Retrofit
@@ -20,6 +21,9 @@ interface WeatherApiService{
 
     @GET("forecast/daily?units=metric&cnt=7&lang=ru&appid=c0c4a4b4047b97ebc5948ac9c48c0559")
     suspend fun getWeekForecast(@Query("q") name: String): ForecastWeek
+
+    @GET("weather?lang=ru&units=metric&appid=6493a6156cae804aa207eb9ee638c79b")
+    suspend fun getCurrentForecast(@Query("q") name: String): ForecastCurrent
 }
 object WeatherApi{
     val retrofitService: WeatherApiService by lazy{
