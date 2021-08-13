@@ -17,5 +17,5 @@ interface CitiesDao {
     suspend fun selectDefaultCity(defaultCity : Boolean): CitiesEntity
 
     @Query("update cities set defaultCity= :defaultCity where id = :id")
-    suspend fun removeDefaultFlag(defaultCity: Boolean, id: Long?)
+    suspend fun changeDefaultFlag(defaultCity: Boolean, id: Long?)
 }

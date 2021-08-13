@@ -1,5 +1,6 @@
 package android.example.com.weather.cities
 
+import android.example.com.weather.adapters.CitiesRecyclerAdapter
 import android.example.com.weather.databinding.FragmentCitiesBinding
 import android.example.com.weather.db.CitiesDao
 import android.example.com.weather.db.CitiesDataBase
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 
 class CitiesFragment : Fragment() {
 
@@ -24,6 +27,7 @@ class CitiesFragment : Fragment() {
         //return inflater.inflate(R.layout.fragment_cities, container, false)
         setBinding(inflater)
         setViewModel()
+        observeForecastCurrent()
 
         return binding.root
     }
@@ -38,5 +42,12 @@ class CitiesFragment : Fragment() {
         val viewModelFactory = CitiesViewModelFactory(application,datasource)
         viewModel = ViewModelProvider(this,viewModelFactory).get(CitiesViewModel::class.java)
         binding.viewModel = viewModel
+    }
+    fun observeForecastCurrent(){
+        viewModel.forecastCurrent.observe(viewLifecycleOwner, Observer { forecastCurrent ->
+            binding.citiesRecycler.layoutManager = LinearLayoutManager(activity)
+            val adapter = CitiesRecyclerAdapter(forecastCurrent, viewModel)
+            binding.citiesRecycler.adapter = adapter
+        })
     }
 }

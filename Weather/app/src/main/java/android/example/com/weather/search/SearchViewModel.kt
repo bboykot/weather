@@ -38,7 +38,7 @@ class SearchViewModel(application: Application, val datasource: CitiesDao) : And
     //стираем флаг умолчания старого города установленного по умолчанию и ставим флаг новому городу
     fun saveCityAsDefault(){
             viewModelScope.launch {
-                datasource.removeDefaultFlag(false,defaultCity.value?.id)
+                datasource.changeDefaultFlag(false,defaultCity.value?.id)
                 datasource.insertCity(CitiesEntity(id = forecastCurrent.value?.id, name = forecastCurrent.value?.name, defaultCity = true))
             }
     }
