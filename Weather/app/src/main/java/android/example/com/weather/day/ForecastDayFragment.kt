@@ -28,10 +28,8 @@ class ForecastDayFragment : Fragment() {
         //return inflater.inflate(R.layout.fragment_forecast_day, container, false)
         getCityName()
         setBinding(inflater)
-
         setViewModel()
         observeForecastDay()
-
 
         return binding.root
     }

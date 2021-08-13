@@ -5,6 +5,7 @@ import android.example.com.weather.cities.CitiesFragment
 import android.example.com.weather.cities.CitiesViewModel
 import android.example.com.weather.data.ForecastCurrent
 import android.example.com.weather.day.ForecastDayFragment
+import android.example.com.weather.week.ForecastWeekFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,14 @@ class CitiesRecyclerAdapter (val forecastCurrent: List<ForecastCurrent>,val view
                    .addToBackStack("true")
                    .setReorderingAllowed(true)
                    .commit()
+            }
+            btnForecastWeek.setOnClickListener {
+                fragment.setFragmentResult("WeekForecast", bundleOf("name" to forecastCurrent[adapterPosition].name))
+                fragment.parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container,ForecastWeekFragment())
+                    .addToBackStack("true")
+                    .setReorderingAllowed(true)
+                    .commit()
             }
 
         }

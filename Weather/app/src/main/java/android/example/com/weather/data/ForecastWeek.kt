@@ -15,7 +15,11 @@ data class ForecastWeek(
         val temp: Temp,
         val weather: List<Weather>
     ){
-        data class Temp(val day: Float)
+        val wind: String get()= "Ветер: " + speed.toInt().toString() + " м/с"
+
+        data class Temp(val day: Float){
+            val temperature: String get() = "Температура: " +day.toInt().toString()+" C"
+        }
         data class Weather(val description: String, val main: String)
     }
 }
