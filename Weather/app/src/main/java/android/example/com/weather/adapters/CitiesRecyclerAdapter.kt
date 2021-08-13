@@ -1,16 +1,20 @@
 package android.example.com.weather.adapters
 
 import android.example.com.weather.R
+import android.example.com.weather.cities.CitiesFragment
 import android.example.com.weather.cities.CitiesViewModel
 import android.example.com.weather.data.ForecastCurrent
+import android.example.com.weather.day.ForecastDayFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.RecyclerView
 
-class CitiesRecyclerAdapter (val forecastCurrent: List<ForecastCurrent>,val viewModel: CitiesViewModel) : RecyclerView.Adapter<CitiesRecyclerAdapter.MyViewHolder>(){
+class CitiesRecyclerAdapter (val forecastCurrent: List<ForecastCurrent>,val viewModel: CitiesViewModel, val fragment: CitiesFragment) : RecyclerView.Adapter<CitiesRecyclerAdapter.MyViewHolder>(){
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvName: TextView
@@ -33,6 +37,16 @@ class CitiesRecyclerAdapter (val forecastCurrent: List<ForecastCurrent>,val view
             btnSetDefault.setOnClickListener {
                 viewModel.setNewDefaultCity(forecastCurrent[adapterPosition].id)
             }
+            //передаем наименование города во фрагмент суточного прогноза и переходим в него
+            btnForecastDay.setOnClickListener {
+                fragment.setFragmentResult("DayForecast", bundleOf("name" to forecastCurrent[adapterPosition].name))
+               fragment.parentFragmentManager.beginTransaction()
+                   .replace(R.id.fragment_container,ForecastDayFragment())
+                   .addToBackStack("true")
+                   .setReorderingAllowed(true)
+                   .commit()
+            }
+
         }
     }
 
