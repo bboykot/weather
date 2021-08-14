@@ -2,4 +2,14 @@
     <string name="app_name">Weather</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_default_city">Не задан город по умолчанию. Перейдите в окно поиска, найдите Ваш город и сохраните как город по умолчанию</string>
+    <string name="search_btn_text">Поиск</string>
+    <string name="save_btn_text">Сохранить</string>
+    <string name="save_default_btn_text">Сохранить как город по умолчанию</string>
+    <string name="cities_btn_day">Сутки</string>
+    <string name="cities_btn_week">7 дней</string>
+    <string name="btn_set_as_default">Сделать городом по умолчанию</string>
+    <string name="bot_menu_my_city">Мой город</string>
+    <string name="bot_menu_cities">Города</string>
+    <string name="bot_menu_search">Поиск</string>
 </resources>

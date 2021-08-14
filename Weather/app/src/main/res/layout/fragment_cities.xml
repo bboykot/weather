@@ -12,44 +12,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cities.CitiesFragment">
+    tools:context=".cities.CitiesFragment"
+    android:background="@color/main_bacground">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tv_cities_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@{viewModel.cities.toString()}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_cities_defailt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cities_test"
-        android:layout_marginTop="50dp"
-        android:text="@{viewModel.defaultCity.toString()}"/>
-
-    <TextView
-        android:id="@+id/tv_cities_forecast_current"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@{viewModel.forecastCurrent.toString()}"
-        android:layout_marginBottom="100dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cities_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cities_test"
-        tools:layout_editor_absoluteX="16dp" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="80dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

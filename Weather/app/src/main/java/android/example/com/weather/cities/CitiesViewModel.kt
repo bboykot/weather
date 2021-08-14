@@ -18,7 +18,6 @@ class CitiesViewModel(application: Application,val datasource: CitiesDao) : Andr
     var cities: MutableLiveData<List<CitiesEntity>> = MutableLiveData<List<CitiesEntity>>()
     val defaultCity = MutableLiveData<CitiesEntity>()
     var forecastCurrent = MutableLiveData<MutableList<ForecastCurrent>>()
-    //lateinit var citiesForecast: MutableList<ForecastCurrent>
 
     init {
         forecastCurrent.value = ArrayList()
@@ -44,7 +43,6 @@ class CitiesViewModel(application: Application,val datasource: CitiesDao) : Andr
 
         viewModelScope.launch {
             cities.value = datasource.selectCities()
-            val someDate = cities.value
             if (cities.value?.size == 0){Toast.makeText(applicationn.baseContext, "Нет сохраненных городов",Toast.LENGTH_SHORT).show()}
             else load()
         }

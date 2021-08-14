@@ -13,7 +13,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".search.SearchFragment">
+    tools:context=".search.SearchFragment"
+    android:background="@color/main_bacground">
 
     <EditText
         android:id="@+id/et_search"
@@ -30,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/et_search"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Поиск"/>
+        android:text="@string/search_btn_text"/>
 
     <Button
         android:id="@+id/brn_save_city"
@@ -38,14 +39,18 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_search"
-        android:text="Сохранить"/>
+        android:text="@string/save_btn_text"
+        android:layout_marginStart="5dp"/>
 
     <Button
         android:id="@+id/btn_save_set_default"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Сохранить и сделать городом по умолчанию"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/save_default_btn_text"
         android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/brn_save_city"
         app:layout_constraintTop_toBottomOf="@+id/et_search" />
 
@@ -57,7 +62,10 @@
         android:text="@{viewModel.forecastCurrent.name}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_save_set_default" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_save_set_default"
+        style="@style/Title_search"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/tv_search_temp"
@@ -66,7 +74,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_search_city_name"
-        android:text="@{viewModel.forecastCurrent.Main.temperature}"/>
+        android:text="@{viewModel.forecastCurrent.Main.temperature}"
+        style="@style/data_search"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/tv_search_wind"
@@ -75,7 +85,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_search_temp"
-        android:text="@{viewModel.forecastCurrent.Wind.wind}"/>
+        android:text="@{viewModel.forecastCurrent.Wind.wind}"
+        style="@style/data_search"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/tv_search_weather"
@@ -84,7 +96,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_search_wind"
-        android:text="@{viewModel.forecastCurrent.Weather[0].description}"/>
+        android:text="@{viewModel.forecastCurrent.Weather[0].description}"
+        style="@style/data_search"
+        android:layout_marginTop="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

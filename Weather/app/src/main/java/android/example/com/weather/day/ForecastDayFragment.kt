@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
@@ -27,8 +26,7 @@ class ForecastDayFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_forecast_day, container, false)
+
         getCityName()
         setBinding(inflater)
         setViewModel()
@@ -44,7 +42,6 @@ class ForecastDayFragment : Fragment() {
     fun getCityName(){
         setFragmentResultListener("DayForecast"){requestKey, bundle ->
             cityName = bundle.getString("name")
-            Toast.makeText(activity,cityName, Toast.LENGTH_LONG).show()
         }
     }
     fun setViewModel(){

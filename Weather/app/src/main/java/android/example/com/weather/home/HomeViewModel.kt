@@ -31,7 +31,6 @@ class HomeViewModel(application: Application, val datasource: CitiesDao) : Andro
         viewModelScope.launch {
             defaultt.value = false
             defaultCity.value = datasource.selectDefaultCity(true)
-            val someDate = defaultCity.value
             if (defaultCity.value != null){ loadDataFromIntenet() }
             else {
                 Toast.makeText(applicationn.baseContext, "Не задан город по умолчанию",Toast.LENGTH_SHORT).show()

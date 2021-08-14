@@ -23,7 +23,6 @@ class ForecastWeekViewModel(application: Application, val fragment: ForecastWeek
     fun getCityNameAndLoadForecast(){
         fragment.setFragmentResultListener("WeekForecast"){requestKey, bundle ->
             cityName = bundle.getString("name")
-            Toast.makeText(applicationn,"name is $cityName",Toast.LENGTH_LONG).show()
             loadForecastWeek()
         }
     }

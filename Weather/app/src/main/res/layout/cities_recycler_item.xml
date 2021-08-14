@@ -6,7 +6,7 @@
     android:layout_marginTop="10dp"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
-    android:background="@android:color/holo_blue_bright">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/rec_cities_tv_name"
@@ -16,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"
-        android:text="example"/>
+        style="@style/Title"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/rec_cities_tv_temp"
@@ -26,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@id/rec_cities_tv_name"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
-        android:text="temperature"/>
+        style="@style/data"/>
     <TextView
         android:id="@+id/rec_cities_tv_wind"
         android:layout_width="wrap_content"
@@ -35,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="wind"/>
+        style="@style/data"/>
     <TextView
         android:id="@+id/rec_cities_tv_weather"
         android:layout_width="wrap_content"
@@ -44,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="weather" />
+        style="@style/data"/>
 
     <Button
         android:id="@+id/rec_cities_btn_forecast_day"
@@ -54,7 +55,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="Сутки"/>
+        android:text="@string/cities_btn_day"
+        />
 
     <Button
         android:id="@+id/rec_cities_btn_forecast_week"
@@ -64,13 +66,14 @@
         app:layout_constraintStart_toEndOf="@+id/rec_cities_btn_forecast_day"
         app:layout_constraintTop_toTopOf="@+id/rec_cities_btn_forecast_day"
         android:layout_marginStart="20dp"
-        android:text="7 дней"/>
+        android:text="@string/cities_btn_week"
+        />
 
     <Button
         android:id="@+id/rec_cities_btn_set_default"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Сделать городом по умолчанию"
+        android:text="@string/btn_set_as_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rec_cities_btn_forecast_day" />

@@ -3,15 +3,18 @@
 
     <item
         android:id="@+id/bottom_menu_my_city"
-        android:title="Мой город"
+        android:title="@string/bot_menu_my_city"
+        android:icon="@drawable/ic_baseline_home_24"
         />
     <item
         android:id="@+id/bottom_menu_cities"
-        android:title="Города"
+        android:title="@string/bot_menu_cities"
+        android:icon="@drawable/ic_baseline_location_city_24"
         />
     <item
         android:id="@+id/bottom_menu_search"
-        android:title="Поиск"
+        android:title="@string/bot_menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
         />
 
 </menu>

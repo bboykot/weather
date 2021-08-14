@@ -8,6 +8,7 @@ import android.example.com.weather.home.HomeFragment
 import android.example.com.weather.root.AppNavigation
 import android.example.com.weather.search.SearchFragment
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 
@@ -20,21 +21,8 @@ class MainActivity : AppCompatActivity(), AppNavigation {
         //setContentView(R.layout.activity_main)
         setBinding()
         setBottomNavigation()
+        setStartDestination(savedInstanceState)
 
-//        val tv = findViewById<TextView>(R.id.tv_main)
-//        val tvWeek = findViewById<TextView>(R.id.tv_week)
-//        GlobalScope.launch {
-//            forecastWeek = WeatherApi.retrofitService.getWeekForecast("London")
-//            forecastDay = WeatherApi.retrofitService.getDayForecast("Rostov-on-Don")
-//
-//        }
-//
-//        tv.setOnClickListener {
-//            tv.text = forecastDay.toString()
-//        }
-//        tvWeek.setOnClickListener {
-//            tvWeek.text = forecastWeek.toString()
-//        }
     }
     fun setBinding(){
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
@@ -50,6 +38,11 @@ class MainActivity : AppCompatActivity(), AppNavigation {
             }?.also { moveTo(supportFragmentManager,R.id.fragment_container,it) }
 
             true
+        }
+    }
+    fun setStartDestination(savedInstanceState: Bundle?){
+        if(savedInstanceState == null){
+            findViewById<View>(R.id.bottom_menu_my_city).callOnClick()
         }
     }
 }

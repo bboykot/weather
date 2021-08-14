@@ -20,14 +20,12 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_search, container, false)
+
         setBinding(inflater)
         setViewModel()
         setSearchClickListener()
         setSaveClickListener()
         setSaveCityAsDefaultClickListener()
-        //observeDataFromInternet()
 
         return binding.root
     }
@@ -60,9 +58,4 @@ class SearchFragment : Fragment() {
             viewModel.saveCityAsDefault()
         }
     }
-//    fun observeDataFromInternet(){
-//        viewModel.forecastDay.observe(viewLifecycleOwner, Observer { forecastDay->
-//            //binding.searchTest.text = viewModel.forecastDay.value.toString()
-//        })
-//    }
 }
