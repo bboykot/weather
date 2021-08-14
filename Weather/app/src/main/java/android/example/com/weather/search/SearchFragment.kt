@@ -53,14 +53,6 @@ class SearchFragment : Fragment() {
     fun setSaveClickListener(){
         binding.brnSaveCity.setOnClickListener {
             viewModel.saveCity()
-//            GlobalScope.launch {
-//                dataSource.insertCity(
-//                    CitiesEntity(
-//                        id = viewModel.forecastCurrent.value?.id,
-//                        name = viewModel.forecastCurrent.value?.name
-//                    )
-//                )
-//            }
         }
     }
     fun setSaveCityAsDefaultClickListener(){

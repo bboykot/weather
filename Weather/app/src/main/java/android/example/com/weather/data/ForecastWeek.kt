@@ -1,5 +1,8 @@
 package android.example.com.weather.data
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 data class ForecastWeek(
     val cnt: Int,
     val city: City,
@@ -16,6 +19,11 @@ data class ForecastWeek(
         val weather: List<Weather>
     ){
         val wind: String get()= "Ветер: " + speed.toInt().toString() + " м/с"
+
+        val date get() = Date(dt * 1000)
+        val format get() = SimpleDateFormat("dd.MM.yyyy",Locale.US)
+        val dateTime get() = format.format(date)
+
 
         data class Temp(val day: Float){
             val temperature: String get() = "Температура: " +day.toInt().toString()+" C"

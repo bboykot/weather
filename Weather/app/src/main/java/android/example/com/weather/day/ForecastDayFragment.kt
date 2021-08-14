@@ -2,6 +2,8 @@ package android.example.com.weather.day
 
 import android.example.com.weather.adapters.ForecastDayRecyclerAdapter
 import android.example.com.weather.databinding.FragmentForecastDayBinding
+import android.example.com.weather.db.CitiesDao
+import android.example.com.weather.db.CitiesDataBase
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +21,7 @@ class ForecastDayFragment : Fragment() {
     private lateinit var binding: FragmentForecastDayBinding
     private lateinit var viewModel: ForecastDayViewModel
     private var cityName: String? =""
+    private lateinit var dataSource: CitiesDao
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +49,8 @@ class ForecastDayFragment : Fragment() {
     }
     fun setViewModel(){
         val application = requireNotNull(this.activity).application
-        val viewModelFactory = ForecastDayViewModelFactory(application, cityName,this)
+        dataSource = CitiesDataBase.getInstance(application).citiesDao
+        val viewModelFactory = ForecastDayViewModelFactory(application, this)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ForecastDayViewModel::class.java)
         binding.viewModel = viewModel
     }

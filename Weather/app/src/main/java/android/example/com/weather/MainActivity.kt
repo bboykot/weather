@@ -4,12 +4,14 @@ import android.example.com.weather.cities.CitiesFragment
 import android.example.com.weather.data.ForecastDay
 import android.example.com.weather.data.ForecastWeek
 import android.example.com.weather.databinding.ActivityMainBinding
+import android.example.com.weather.home.HomeFragment
+import android.example.com.weather.root.AppNavigation
 import android.example.com.weather.search.SearchFragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AppNavigation {
     private lateinit var binding: ActivityMainBinding
     private lateinit var forecastDay: ForecastDay
     private lateinit var forecastWeek: ForecastWeek
@@ -42,12 +44,11 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId){
                 R.id.bottom_menu_search -> SearchFragment()
                 R.id.bottom_menu_cities -> CitiesFragment()
+                R.id.bottom_menu_my_city -> HomeFragment()
                 else -> null
-            }?.also { supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,it)
-                .addToBackStack("true")
-                .setReorderingAllowed(true)
-                .commit()}
+
+            }?.also { moveTo(supportFragmentManager,R.id.fragment_container,it) }
+
             true
         }
     }
