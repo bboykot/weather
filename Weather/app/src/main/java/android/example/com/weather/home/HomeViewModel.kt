@@ -15,22 +15,28 @@ class HomeViewModel(application: Application, val datasource: CitiesDao) : Andro
     val applicationn = application
     var defaultCity = MutableLiveData<CitiesEntity>()
     var forecastDay = MutableLiveData<ForecastDay>()
-    var defaultCitySetted: Boolean = true
+    var defaultt: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     init {
-        loadForecastDay()
+        displayDefaultCityForecast()
     }
 
-
-    fun loadForecastDay(){
-        viewModelScope.launch {
-            try {
-                defaultCity.value = datasource.selectDefaultCity(true)
-                forecastDay.value = WeatherApi.retrofitService.getDayForecast(defaultCity.value?.name!!)
-                defaultCitySetted = false
-            }
-            catch (e: Exception){
-                Toast.makeText(applicationn,"Не задан город по умолчанию", Toast.LENGTH_LONG).show()}
+    suspend fun loadDataFromIntenet(){
+        try {
+            forecastDay.value = WeatherApi.retrofitService.getDayForecast(defaultCity.value?.name!!)
         }
+        catch (e:Exception){Toast.makeText(applicationn.baseContext, "Нет подключения к сети",Toast.LENGTH_LONG).show()}
     }
+    fun displayDefaultCityForecast(){
+        viewModelScope.launch {
+            defaultt.value = false
+            defaultCity.value = datasource.selectDefaultCity(true)
+            val someDate = defaultCity.value
+            if (defaultCity.value != null){ loadDataFromIntenet() }
+            else {
+                Toast.makeText(applicationn.baseContext, "Не задан город по умолчанию",Toast.LENGTH_SHORT).show()
+                defaultt.value = true
+                }
+            }
+        }
 }

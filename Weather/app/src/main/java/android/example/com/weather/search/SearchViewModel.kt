@@ -27,7 +27,7 @@ class SearchViewModel(application: Application, val datasource: CitiesDao) : And
                 forecastCurrent.value = WeatherApi.retrofitService.getCurrentForecast(city)
             }
             catch (e: Exception){
-                Toast.makeText(applicationn.baseContext, "Wrong name or no internet connection",Toast.LENGTH_LONG).show()}
+                Toast.makeText(applicationn.baseContext, "Неправильное имя или нет подключения к сети",Toast.LENGTH_LONG).show()}
         }
     }
     fun saveCity(){

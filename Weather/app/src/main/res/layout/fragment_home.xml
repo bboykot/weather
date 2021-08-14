@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_tv_city_name"
         android:text="Не задан город по умолчанию"
-        android:visibility="@{viewModel.defaultCitySetted ? View.VISIBLE : View.GONE}"/>
+        android:visibility="@{viewModel.defaultt == true ? View.VISIBLE : View.GONE}"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
