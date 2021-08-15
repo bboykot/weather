@@ -36,8 +36,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_tv_city_name"
-        android:layout_marginBottom="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/recycler_margin_bottom"
+        android:layout_marginTop="@dimen/home_margin_10"
         />
 
     <TextView
@@ -50,8 +50,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="@dimen/home_margin_10"
+        android:layout_marginEnd="@dimen/home_margin_10"
          />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

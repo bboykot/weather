@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="m_start_5">5dp</dimen>
+    <dimen name="search_margin_10">10dp</dimen>
+    <dimen name="home_margin_10">10dp</dimen>
+    <dimen name="recycler_margin_bottom">80dp</dimen>
+    <dimen name="week_margin_10">10dp</dimen>
+    <dimen name="day_margin_10">10dp</dimen>
+    <dimen name="rec_forecast_m_10">10dp</dimen>
+    <dimen name="rec_forecast_item_height">170dp</dimen>
+    <dimen name="rec_forecast_m_20">20dp</dimen>
+    <dimen name="rec_cities_m_10">10dp</dimen>
+    <dimen name="rec_cities_m_20">20dp</dimen>
+    <dimen name="rec_cities_height">300dp</dimen>
+</resources>
