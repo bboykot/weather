@@ -6,15 +6,20 @@ import android.example.com.weather.network.WeatherApi
 import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class ForecastWeekViewModel(application: Application, val fragment: ForecastWeekFragment) : AndroidViewModel(application) {
+class ForecastWeekViewModel(application: Application,private val fragment: ForecastWeekFragment) : AndroidViewModel(application) {
 
-    val applicationn = application
-    val forecastWeek = MutableLiveData<ForecastWeek>()
-    var cityName : String? =""
+    private val applicationn = application
+
+    private val forecastWeek = MutableLiveData<ForecastWeek>()
+    val imForecastWeek: LiveData<ForecastWeek>
+    get() = forecastWeek
+
+    private var cityName : String? =""
 
     init {
         getCityNameAndLoadForecast()

@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
     }
     fun observeForecastDay(){
-        viewModel.forecastDay.observe(viewLifecycleOwner, Observer { forecastDay->
+        viewModel.imForecastDay.observe(viewLifecycleOwner, Observer { forecastDay->
             binding.homeRecycler.layoutManager = LinearLayoutManager(activity)
             val adapter = ForecastDayRecyclerAdapter(forecastDay.list)
             binding.homeRecycler.adapter = adapter

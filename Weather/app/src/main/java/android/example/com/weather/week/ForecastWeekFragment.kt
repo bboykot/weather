@@ -37,7 +37,7 @@ class ForecastWeekFragment : Fragment() {
         binding.viewModel = viewModel
     }
     fun observeForecastWeek(){
-        viewModel.forecastWeek.observe(viewLifecycleOwner, Observer { forecastWeek ->
+        viewModel.imForecastWeek.observe(viewLifecycleOwner, Observer { forecastWeek ->
             binding.recyclerWeek.layoutManager = LinearLayoutManager(activity)
             val adapter = ForecastWeekRecyclerAdapter(forecastWeek.list)
             binding.recyclerWeek.adapter = adapter

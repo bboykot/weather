@@ -42,7 +42,7 @@ class CitiesFragment : Fragment() {
         binding.viewModel = viewModel
     }
     fun observeForecastCurrent(){
-        viewModel.forecastCurrent.observe(viewLifecycleOwner, Observer { forecastCurrent ->
+        viewModel.imForecastCurrent.observe(viewLifecycleOwner, Observer { forecastCurrent ->
             binding.citiesRecycler.layoutManager = LinearLayoutManager(activity)
             val adapter = CitiesRecyclerAdapter(forecastCurrent, viewModel, this)
             binding.citiesRecycler.adapter = adapter

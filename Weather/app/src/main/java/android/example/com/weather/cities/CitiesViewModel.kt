@@ -7,17 +7,21 @@ import android.example.com.weather.db.CitiesEntity
 import android.example.com.weather.network.WeatherApi
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import java.util.*
 
-class CitiesViewModel(application: Application,val datasource: CitiesDao) : AndroidViewModel(application) {
+class CitiesViewModel(application: Application,private val datasource: CitiesDao) : AndroidViewModel(application) {
 
-    val applicationn = application
-    var cities: MutableLiveData<List<CitiesEntity>> = MutableLiveData<List<CitiesEntity>>()
-    val defaultCity = MutableLiveData<CitiesEntity>()
-    var forecastCurrent = MutableLiveData<MutableList<ForecastCurrent>>()
+    private val applicationn = application
+    private var cities: MutableLiveData<List<CitiesEntity>> = MutableLiveData<List<CitiesEntity>>()
+    private val defaultCity = MutableLiveData<CitiesEntity>()
+
+    private var forecastCurrent = MutableLiveData<MutableList<ForecastCurrent>>()
+    val imForecastCurrent: LiveData<MutableList<ForecastCurrent>>
+    get() = forecastCurrent
 
     init {
         forecastCurrent.value = ArrayList()

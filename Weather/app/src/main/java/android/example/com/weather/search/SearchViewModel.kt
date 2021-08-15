@@ -7,15 +7,20 @@ import android.example.com.weather.db.CitiesEntity
 import android.example.com.weather.network.WeatherApi
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class SearchViewModel(application: Application, val datasource: CitiesDao) : AndroidViewModel(application){
+class SearchViewModel(application: Application,private val datasource: CitiesDao) : AndroidViewModel(application){
 
-    val applicationn = application
-    var forecastCurrent = MutableLiveData<ForecastCurrent>()
-    var defaultCity = MutableLiveData<CitiesEntity>()
+    private val applicationn = application
+
+    private var forecastCurrent = MutableLiveData<ForecastCurrent>()
+    val imForecastCurrent: LiveData<ForecastCurrent>
+    get() = forecastCurrent
+
+    private var defaultCity = MutableLiveData<CitiesEntity>()
 
     init {
         selectDefaultCity()
@@ -32,14 +37,24 @@ class SearchViewModel(application: Application, val datasource: CitiesDao) : And
     }
     fun saveCity(){
         viewModelScope.launch {
-            datasource.insertCity(CitiesEntity(id = forecastCurrent.value?.id,name = forecastCurrent.value?.name,false))
+            if (forecastCurrent.value?.id != null){
+                datasource.insertCity(CitiesEntity(id = forecastCurrent.value?.id,name = forecastCurrent.value?.name,false))
+            }
+            else{
+                Toast.makeText(applicationn.baseContext, "Прежде выполните поиск города",Toast.LENGTH_SHORT).show()
+            }
         }
     }
     //стираем флаг умолчания старого города установленного по умолчанию и ставим флаг новому городу
     fun saveCityAsDefault(){
             viewModelScope.launch {
-                datasource.changeDefaultFlag(false,defaultCity.value?.id)
-                datasource.insertCity(CitiesEntity(id = forecastCurrent.value?.id, name = forecastCurrent.value?.name, defaultCity = true))
+                if (forecastCurrent.value?.id != null){
+                    datasource.changeDefaultFlag(false,defaultCity.value?.id)
+                    datasource.insertCity(CitiesEntity(id = forecastCurrent.value?.id, name = forecastCurrent.value?.name, defaultCity = true))
+                }
+                else{
+                    Toast.makeText(applicationn.baseContext, "Прежде выполните поиск города",Toast.LENGTH_SHORT).show()
+                }
             }
     }
     //Узнаем город по умолчанию, чтобы в дальнейшем иметь возможность изменить флаг города по умолчанию

@@ -40,7 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_search"
         android:text="@string/save_btn_text"
-        android:layout_marginStart="5dp"/>
+        android:layout_marginStart="5dp"
+        android:onClick="@{()-> viewModel.saveCity()}"/>
 
     <Button
         android:id="@+id/btn_save_set_default"
@@ -52,14 +53,15 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/brn_save_city"
-        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+        app:layout_constraintTop_toBottomOf="@+id/et_search"
+        android:onClick="@{()->viewModel.saveCityAsDefault()}"/>
 
 
     <TextView
         android:id="@+id/tv_search_city_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{viewModel.forecastCurrent.name}"
+        android:text="@{viewModel.imForecastCurrent.name}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_save_set_default"
@@ -74,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_search_city_name"
-        android:text="@{viewModel.forecastCurrent.Main.temperature}"
+        android:text="@{viewModel.imForecastCurrent.Main.temperature}"
         style="@style/data_search"
         android:layout_marginTop="10dp"/>
 
@@ -85,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_search_temp"
-        android:text="@{viewModel.forecastCurrent.Wind.wind}"
+        android:text="@{viewModel.imForecastCurrent.Wind.wind}"
         style="@style/data_search"
         android:layout_marginTop="10dp"/>
 
@@ -96,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_search_wind"
-        android:text="@{viewModel.forecastCurrent.Weather[0].description}"
+        android:text="@{viewModel.imForecastCurrent.Weather[0].description}"
         style="@style/data_search"
         android:layout_marginTop="10dp"/>
 

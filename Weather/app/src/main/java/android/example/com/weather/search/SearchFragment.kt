@@ -24,8 +24,6 @@ class SearchFragment : Fragment() {
         setBinding(inflater)
         setViewModel()
         setSearchClickListener()
-        setSaveClickListener()
-        setSaveCityAsDefaultClickListener()
 
         return binding.root
     }
@@ -46,16 +44,6 @@ class SearchFragment : Fragment() {
         binding.btnSearch.setOnClickListener {
             val city = binding.etSearch.text.toString()
             viewModel.loadForecastDay(city)
-        }
-    }
-    fun setSaveClickListener(){
-        binding.brnSaveCity.setOnClickListener {
-            viewModel.saveCity()
-        }
-    }
-    fun setSaveCityAsDefaultClickListener(){
-        binding.btnSaveSetDefault.setOnClickListener {
-            viewModel.saveCityAsDefault()
         }
     }
 }

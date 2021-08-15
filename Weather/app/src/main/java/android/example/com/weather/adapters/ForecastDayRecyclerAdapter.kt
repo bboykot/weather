@@ -33,7 +33,7 @@ class ForecastDayRecyclerAdapter(val forecastDay: List<ForecastDay.HourData>) : 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.tvTemp.text = forecastDay[position].main.temperature
-        holder.tvDate.text = forecastDay[position].dateText
+        holder.tvDate.text = forecastDay[position].dateTime
         holder.tvWind.text = forecastDay[position].wind.wind
         holder.tvWeather.text = forecastDay[position].weather[0].description
     }

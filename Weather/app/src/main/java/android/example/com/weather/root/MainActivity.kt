@@ -1,11 +1,9 @@
-package android.example.com.weather
+package android.example.com.weather.root
 
+import android.example.com.weather.R
 import android.example.com.weather.cities.CitiesFragment
-import android.example.com.weather.data.ForecastDay
-import android.example.com.weather.data.ForecastWeek
 import android.example.com.weather.databinding.ActivityMainBinding
 import android.example.com.weather.home.HomeFragment
-import android.example.com.weather.root.AppNavigation
 import android.example.com.weather.search.SearchFragment
 import android.os.Bundle
 import android.view.View
@@ -14,8 +12,7 @@ import androidx.databinding.DataBindingUtil
 
 class MainActivity : AppCompatActivity(), AppNavigation {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var forecastDay: ForecastDay
-    private lateinit var forecastWeek: ForecastWeek
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -25,7 +22,7 @@ class MainActivity : AppCompatActivity(), AppNavigation {
 
     }
     fun setBinding(){
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
     }
     fun setBottomNavigation(){
         binding.bottomNav.setOnItemSelectedListener { item->
@@ -35,7 +32,7 @@ class MainActivity : AppCompatActivity(), AppNavigation {
                 R.id.bottom_menu_my_city -> HomeFragment()
                 else -> null
 
-            }?.also { moveTo(supportFragmentManager,R.id.fragment_container,it) }
+            }?.also { moveTo(supportFragmentManager, R.id.fragment_container,it) }
 
             true
         }
