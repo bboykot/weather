@@ -2,25 +2,29 @@ package android.example.com.weather.adapters
 
 import android.example.com.weather.R
 import android.example.com.weather.data.ForecastWeek
+import android.example.com.weather.root.ImgWorker
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ForecastWeekRecyclerAdapter(val forecastWeek: List<ForecastWeek.DayData>) : RecyclerView.Adapter<ForecastWeekRecyclerAdapter.MyViewHolder>() {
+class ForecastWeekRecyclerAdapter(val forecastWeek: List<ForecastWeek.DayData>) : RecyclerView.Adapter<ForecastWeekRecyclerAdapter.MyViewHolder>(), ImgWorker {
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvDate: TextView
         val tvTemp: TextView
         val tvWind: TextView
         val tvWeather: TextView
+        val imgWeather: ImageView
 
         init {
             tvDate = itemView.findViewById(R.id.rec_forecast_tv_date)
             tvTemp = itemView.findViewById(R.id.rec_forecast_tv_temp)
             tvWind = itemView.findViewById(R.id.rec_forecast_tv_wind)
             tvWeather = itemView.findViewById(R.id.rec_forecast_tv_weather)
+            imgWeather = itemView.findViewById(R.id.rec_forecast_img)
         }
     }
 
@@ -36,5 +40,8 @@ class ForecastWeekRecyclerAdapter(val forecastWeek: List<ForecastWeek.DayData>) 
         holder.tvTemp.text = forecastWeek[position].temp.temperature
         holder.tvWind.text = forecastWeek[position].wind
         holder.tvWeather.text = forecastWeek[position].weather[0].description
+        holder.imgWeather.apply {
+            loadWithGlide(this,forecastWeek[position].weather[0].icon)
+        }
     }
 }

@@ -28,6 +28,6 @@ data class ForecastWeek(
         data class Temp(val day: Float){
             val temperature: String get() = "Температура: " +day.toInt().toString()+" C"
         }
-        data class Weather(val description: String, val main: String)
+        data class Weather(val description: String, val main: String, val icon: String)
     }
 }

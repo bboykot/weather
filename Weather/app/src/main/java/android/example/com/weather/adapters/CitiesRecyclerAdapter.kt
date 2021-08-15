@@ -5,23 +5,26 @@ import android.example.com.weather.cities.CitiesFragment
 import android.example.com.weather.cities.CitiesViewModel
 import android.example.com.weather.data.ForecastCurrent
 import android.example.com.weather.day.ForecastDayFragment
+import android.example.com.weather.root.ImgWorker
 import android.example.com.weather.week.ForecastWeekFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.RecyclerView
 
-class CitiesRecyclerAdapter (val forecastCurrent: List<ForecastCurrent>,val viewModel: CitiesViewModel, val fragment: CitiesFragment) : RecyclerView.Adapter<CitiesRecyclerAdapter.MyViewHolder>(){
+class CitiesRecyclerAdapter (val forecastCurrent: List<ForecastCurrent>,val viewModel: CitiesViewModel, val fragment: CitiesFragment) : RecyclerView.Adapter<CitiesRecyclerAdapter.MyViewHolder>(), ImgWorker{
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvName: TextView
         val tvTemp: TextView
         val tvWind: TextView
         val tvWeather: TextView
+        val imgWeather: ImageView
         val btnForecastDay: Button
         val btnForecastWeek: Button
         val btnSetDefault: Button
@@ -31,6 +34,7 @@ class CitiesRecyclerAdapter (val forecastCurrent: List<ForecastCurrent>,val view
             tvTemp = itemView.findViewById(R.id.rec_cities_tv_temp)
             tvWind = itemView.findViewById(R.id.rec_cities_tv_wind)
             tvWeather = itemView.findViewById(R.id.rec_cities_tv_weather)
+            imgWeather = itemView.findViewById(R.id.rec_cities_img_weather)
             btnForecastDay = itemView.findViewById(R.id.rec_cities_btn_forecast_day)
             btnForecastWeek = itemView.findViewById(R.id.rec_cities_btn_forecast_week)
             btnSetDefault = itemView.findViewById(R.id.rec_cities_btn_set_default)
@@ -71,5 +75,9 @@ class CitiesRecyclerAdapter (val forecastCurrent: List<ForecastCurrent>,val view
         holder.tvTemp.text = forecastCurrent[position].main.temperature
         holder.tvWind.text = forecastCurrent[position].wind.wind
         holder.tvWeather.text = forecastCurrent[position].weather[0].description
+        holder.imgWeather.apply {
+            loadWithGlide(this,forecastCurrent[position].weather[0].icon)
+        }
+
     }
 }

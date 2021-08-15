@@ -3,15 +3,17 @@ package android.example.com.weather.search
 import android.example.com.weather.databinding.FragmentSearchBinding
 import android.example.com.weather.db.CitiesDao
 import android.example.com.weather.db.CitiesDataBase
+import android.example.com.weather.root.ImgWorker
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), ImgWorker {
 
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: SearchViewModel
@@ -24,6 +26,7 @@ class SearchFragment : Fragment() {
         setBinding(inflater)
         setViewModel()
         setSearchClickListener()
+        loadImg()
 
         return binding.root
     }
@@ -45,5 +48,11 @@ class SearchFragment : Fragment() {
             val city = binding.etSearch.text.toString()
             viewModel.loadForecastDay(city)
         }
+    }
+
+    fun loadImg(){
+        viewModel.imForecastCurrent.observe(viewLifecycleOwner, Observer { imForecastCurrent ->
+            binding.imgSearchWeather.apply{loadWithGlide(this,imForecastCurrent.weather[0].icon)}
+        })
     }
 }

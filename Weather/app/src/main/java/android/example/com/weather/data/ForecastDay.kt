@@ -28,7 +28,7 @@ data class ForecastDay(
         data class Main(val temp: Float){
             val temperature: String get() = "Температура: " +temp.toInt().toString()+" C"
         }
-        data class Weather(val main: String, val description: String)
+        data class Weather(val main: String, val description: String, val icon: String)
         data class Wind(val speed: Float){
             val wind: String get()= "Ветер: " + speed.toInt().toString() + " м/с"
         }

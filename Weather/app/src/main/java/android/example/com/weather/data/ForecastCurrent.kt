@@ -7,7 +7,7 @@ data class ForecastCurrent(
     val main: Main,
     val wind: Wind
 ){
-    data class Weather(val main: String, val description: String)
+    data class Weather(val main: String, val description: String, val icon: String)
     data class Main(val temp: Float){
         val temperature: String get() = "Температура: " +temp.toInt().toString()+" C"
     }

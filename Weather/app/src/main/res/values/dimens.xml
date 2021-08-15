@@ -12,4 +12,10 @@
     <dimen name="rec_cities_m_10">10dp</dimen>
     <dimen name="rec_cities_m_20">20dp</dimen>
     <dimen name="rec_cities_height">300dp</dimen>
+    <dimen name="weather_img_width">50dp</dimen>
+    <dimen name="weather_img_height">50dp</dimen>
+    <dimen name="weather_img_margin_top">40dp</dimen>
+    <dimen name="weather_img_margin_start">70dp</dimen>
+    <dimen name="weather_img_search_width">70dp</dimen>
+    <dimen name="weather_img_search_height">70dp</dimen>
 </resources>

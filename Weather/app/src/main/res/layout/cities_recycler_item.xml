@@ -45,8 +45,19 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/rec_cities_m_10"
         android:layout_marginTop="@dimen/rec_cities_m_10"
-        style="@style/data"/>
+        style="@style/data"
+        />
 
+    <ImageView
+        android:id="@+id/rec_cities_img_weather"
+        android:layout_width="@dimen/weather_img_width"
+        android:layout_height="@dimen/weather_img_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rec_cities_tv_name"
+        android:layout_marginTop="@dimen/weather_img_margin_top"
+        android:layout_marginStart="@dimen/weather_img_margin_start"
+        />
     <Button
         android:id="@+id/rec_cities_btn_forecast_day"
         android:layout_width="wrap_content"
